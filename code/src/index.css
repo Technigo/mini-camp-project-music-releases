@@ -71,14 +71,14 @@ h1 {
   color: #fff;
   text-decoration: none;
 }
-/* If there are siblings ("+"), add " and " before the last item*/
+/*If there are siblings ("+"), add " and " before the last item*/
 .artist-links span + span:last-child {
 		content: " & ";
 }
 .artist-links span + span:last-child:before {
 		content: " & ";
 }
-/* Add ", " before each item, after the first item. Exclude if it's the last item.*/
+/*Add ", " before each item, after the first item. Exclude if it's the last item.*/
 .artist-links span:nth-of-type(n + 2):not(:last-child) {
 	content: ", ";
 }
@@ -142,13 +142,14 @@ h1 {
   height: 80px;
   top: calc(50% - 40px);
 }
-@media only screen and (min-width: 1800px) {
+@media only screen and (min-width: 2200px) {
   .album {
     width: 10%;
   }
-  .albums {
-    margin: 0 auto;
-    width: 1800px;
+}
+@media only screen and (max-width: 1600px) {
+  .album {
+    width: 20%;
   }
 }
 @media only screen and (max-width: 1200px) {
