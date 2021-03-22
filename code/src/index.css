@@ -72,29 +72,29 @@ h1 {
   text-decoration: none;
 }
 /*If there are siblings ("+"), add " and " before the last item*/
-.artist-links span + span:last-child {
+.artist-names span + span:last-child {
 		content: " & ";
 }
-.artist-links span + span:last-child:before {
+.artist-names span + span:last-child:before {
 		content: " & ";
 }
 /*Add ", " before each item, after the first item. Exclude if it's the last item.*/
-.artist-links span:nth-of-type(n + 2):not(:last-child) {
+.artist-names span:nth-of-type(n + 2):not(:last-child) {
 	content: ", ";
 }
-.artist-links span:nth-of-type(n + 2):not(:last-child)::before {
+.artist-names span:nth-of-type(n + 2):not(:last-child)::before {
 	content: ", ";
 }
-.album-links a {
+.album-name a {
   display: block;
 }
-.artist-links span {
+.artist-names span {
   color: #999999;
 }
 .description a:hover {
   text-decoration: underline;
 }
-.artist-links span a:hover {
+.artist-names span a:hover {
   color: #fff;
 }
 .description a.description-album:visited {
