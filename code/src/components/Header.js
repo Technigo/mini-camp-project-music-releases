@@ -7,3 +7,4 @@ export const Header = (props) => {
     </header>
   )
 }
+export default Header;

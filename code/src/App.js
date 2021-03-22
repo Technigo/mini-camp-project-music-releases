@@ -10,7 +10,7 @@ export const App = () => {
       <section className="albums">
         {Data.albums.items.map((item) => {
           return (
-            <div className="album">
+            <div className="album" key={item.id}>
               <Album key={item.id} item={item} />
             </div>
           )
@@ -19,3 +19,4 @@ export const App = () => {
     </>
   )
 }
+export default App;

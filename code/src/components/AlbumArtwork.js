@@ -11,3 +11,4 @@ export const AlbumArtwork = (props) => {
     </div>
   )
 }
+export default AlbumArtwork;

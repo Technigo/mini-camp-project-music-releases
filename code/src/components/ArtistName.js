@@ -7,3 +7,4 @@ export const ArtistName = (props) => {
     </span>
   )
 }
+export default ArtistName;

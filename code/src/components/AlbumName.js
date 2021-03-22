@@ -7,3 +7,4 @@ export const AlbumName = (props) => {
     </div>
   )
 }
+export default AlbumName;
