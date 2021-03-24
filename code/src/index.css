@@ -25,7 +25,8 @@ header {
   left: 0;
   right: 0;
   z-index: 2;
-  background: #222222;
+  background: #222222e3;
+  backdrop-filter: blur(12px);
 }
 h1 {
   font-size: 18px;
@@ -150,7 +151,7 @@ h1 {
 }
 header select {
   appearance: none;
-  background-color: transparent;
+  background-color: #222222;
   border: none;
   margin: 0;
   width: auto;
@@ -214,6 +215,12 @@ header select:hover {
 }
 @media only screen and (max-width: 480px) {
   .album {
+    width: 100%;
+  }
+  header select {
+    width: 100%;
+  }
+  header .select-wrapper {
     width: 100%;
   }
 }
