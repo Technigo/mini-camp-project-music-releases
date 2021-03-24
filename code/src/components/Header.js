@@ -18,6 +18,7 @@ export const Header = (props) => {
     } else if (event.target.value === 'editorsData') {
       props.sendToParent(editorsData)
     }
+    window.scrollTo(0, 0)
   }
   return (
     <header>
