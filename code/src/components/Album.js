@@ -21,4 +21,4 @@ export const Album = (props) => {
     </>
   )
 }
-export default Album;
+export default Album

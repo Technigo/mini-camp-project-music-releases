@@ -3,15 +3,13 @@ import musicData from './data.json'
 import { Header } from './components/Header'
 import { Album } from './components/Album'
 
-const allData = musicData.albums.items;
+const allData = musicData.albums.items
 
 export const App = () => {
   const [data, setData] = useState(allData);
-
   return (
     <>
-      <Header title="New albums & singles" toChild={data} sendToParent={setData} />
-
+      <Header toChild={data} sendToParent={setData} />
       <section className="albums">
         {data.map((item) => {
           return (
@@ -24,4 +22,4 @@ export const App = () => {
     </>
   )
 }
-export default App;
+export default App

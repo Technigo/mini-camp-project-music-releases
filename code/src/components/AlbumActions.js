@@ -12,4 +12,4 @@ export const AlbumActions = () => {
     </div>
   )
 }
-export default AlbumActions;
+export default AlbumActions
