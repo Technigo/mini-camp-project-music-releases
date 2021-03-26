@@ -1,13 +1,296 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+* {
+  box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+/*---- FONT IMPORTS -----------   */ 
+
+@font-face {
+  font-family: 'Circular Book';
+  src: url('./fonts/c-book.eot'), /* IE9+ Compat Modes */
+       url('./fonts/c-book.woff') format('woff'), /* Modern browsers */
+       url('./fonts/c-book.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Circular Bold';
+  src: url('./fonts/c-bold.eot'); /* IE9+ Compat Modes */
+  src: url('./fonts/c-bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/c-bold.woff') format('woff'), /* Modern browsers */
+       url('./fonts/c-bold.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Circular Black';
+  src: url('./fonts/c-black.eot'); /* IE9+ Compat Modes */
+  src: url('./fonts/c-black.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('./fonts/c-black.woff') format('woff'), /* Modern browsers */
+       url('./fonts/c-black.ttf')  format('truetype'); /* Safari, Android, iOS */
+}
+
+
+/* ------- STYLING --------- */ 
+
+body {
+  padding: 16px;
+  color: #fff;
+  background-color: #181818;
+  margin: 0;
+  font-family: 'Circular Book',sans-serif;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.header {
+  margin-top: 48px;
+  border-bottom: 1px solid #282828;
+  margin-bottom: 15px;
+  padding-bottom: 6px;
+  font-size: 18px;
+  letter-spacing: -0.022em;
+  font-family: "Circular Black";
+}
+
+.content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.albums {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.album {
+  /*min-width: 200px; */
+  flex-basis: 100%;
+}
+
+.albuminformation {
+  margin-top: 8px;
+  height: 90px;
+}
+
+.titlewrapper {
+  width: 100%;
+  margin-bottom: 4px;
+}
+
+.albumtitle {
+  font-family: "Circular Bold",sans-serif;
+  letter-spacing: 0.01em;
+  font-size: 14px;
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+@supports (-webkit-line-clamp: 2) {
+  .albumtitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: initial;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  }
+}
+
+.artists {
+  height: 24px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.artist {
+  width: auto;
+  display: inline-block;
+  color: #A4A4A4;
+  font-size: 14px;
+  letter-spacing: 0.015em;
+  font-family: "Circular Book", sans-serif;
+  font-weight: 400;
+  flex-grow: 0;
+  margin-right: 4px;
+}
+
+.artist ~ .artist:before{
+  display: inline-block;
+  content: ",";
+  color: #A4A4A4;
+  margin-right: 4px;
+  text-decoration-color: #000;
+  text-decoration: none !important;
+}
+
+.cover {
+  position: relative;
+  width: 100%;
+}
+
+.image {
+  width: 100%;
+}
+
+.cover:hover .actions {
+  display: flex;
+}
+
+.actions {
+  display:none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.68);
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.actions .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 175px;
+}
+
+.actions .save,
+.actions .more {
+  width: 21px;
+  height: 21px;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+  line-height: 1.5em;
+  transition: color 50ms;
+}
+
+a:hover {
+  color: #fff;
+  -webkit-text-decoration: #fff solid underline;
+  text-decoration: #fff solid underline;
+  -webkit-text-underline-position: under;
+  text-underline-position: under;
+}
+
+a:hover:before {
+  text-decoration: none !important;
+}
+
+
+button.save.is-saved .heart path {
+  stroke: #fff;
+  fill: #fff;
+}
+
+.heart {
+  width: 22px;
+  height: 22px;
+}
+
+.heart path {
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+button.big {
+  width: 56px;
+  height: 56px;
+  border-radius: 100%;
+  border: 1px solid rgba(255,255,255,0.8);
+  background-color: rgba(0,0,0,0.5);
+}
+
+button.play {
+  background-image: url('./icons/play-icon.svg');
+  background-repeat: no-repeat;
+  background-position: 55% 50%;
+  transition: all 50ms;
+}
+
+button.big:hover {
+  border-color: #fff;
+  transform: scale(1.1);
+}
+
+button.more {
+  background-image: url('./icons/dots.svg');
+  width: 21px;
+}
+
+//------ RESPONSIVENESS -------- //
+
+
+//754px - 3 cols
+
+//550px - 2 cols
+
+//400px - 1col
+
+@media (min-width: 200px) {
+  .album {
+    flex-basis: calc(100%);
+  }
+}
+
+@media (min-width: 400px) {
+  .album {
+    flex-basis: calc(50% - 12px);
+  }
+
+  .actions .container {
+    width: 70%;
+  }
+  body {
+    padding: 24px;
+  }
+}
+
+@media (min-width: 800px) {
+  .album {
+    flex-basis: calc(33.3% - 16px);
+  }
+  body {
+    padding: 36px;
+  }
+  .album:last-child {
+    margin-right: calc(33.3%);
+  }
+}
+
+@media (min-width: 900px) {
+  .album {
+    flex-basis: calc(25% - 16px);
+  }
+  .actions .container {
+    width: 75%;
+  }
+  body {
+    padding: 36px;
+  }
+  .album:last-child {
+    margin-right: calc(50%);
+  }
+}
+
