@@ -12,6 +12,7 @@ let searchPlaceholder = 'Search Albums & Singles'
 
 export const Header = (props) => {
   function searchChange(value) {
+    console.log(value)
     searchValue = value
     if (filterValue === 'allData') {
       props.sendToParent(
@@ -30,9 +31,15 @@ export const Header = (props) => {
         editorsData.filter((filter) => filter.name.toLowerCase().includes(value.toLowerCase()))
       )
     }
+    if (searchValue.length > 0) {
+      document.getElementsByClassName('input-search-clear')[0].style.display = 'block'
+    } else {
+      document.getElementsByClassName('input-search-clear')[0].style.display = 'none'
+    }
   }
   function filterChange(event) {
     searchValue = ''
+    document.getElementsByClassName('input-search-clear')[0].style.display = 'none'
     if (event.target.value === 'singlesData') {
       props.sendToParent(singlesData)
       filterValue = 'singlesData'
@@ -50,7 +57,10 @@ export const Header = (props) => {
       filterValue = 'editorsData'
       searchPlaceholder = 'Search Editor\'s Picks'
     }
-    window.scrollTo(0, 0)
+    window.scroll({
+      top: 0,
+      behavior: 'smooth'
+    })
   }
   return (
     <header>
@@ -62,7 +72,10 @@ export const Header = (props) => {
           <option value="editorsData">Editor&apos;s Picks</option>
         </select>
       </div>
-      <input id="filter" name="filter" type="text" placeholder={searchPlaceholder} value={searchValue} onChange={(event) => searchChange(event.target.value)} ref={(input) => input && input.focus()} />
+      <div className="input-wrapper">
+        <input id="input-search" name="input-search" type="text" placeholder={searchPlaceholder} value={searchValue} onChange={(event) => searchChange(event.target.value)} ref={(input) => input && input.focus()} />
+        <button className="input-search-clear" type="button" value="" onClick={(event) => searchChange(event.target.value)}>&nbsp;</button>
+      </div>
     </header>
   )
 }

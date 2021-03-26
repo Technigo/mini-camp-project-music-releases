@@ -62,6 +62,7 @@ h1 {
 .artwork-image {
   width: 100%;
   z-index: 1;
+  display: block;
 }
 .description {
   padding: 10px 10px 20px 10px;
@@ -169,11 +170,11 @@ header select {
   padding-left: 10px;
   padding-right: 30px;
 }
-.select-wrapper {
+header .select-wrapper {
   position: relative;
   display: inline-block;
 }
-.select-wrapper:after {
+header .select-wrapper:after {
   content: ' ';
   background: url(./icons/arrow-down.svg) no-repeat;
   display:block;
@@ -181,11 +182,15 @@ header select {
   height:6px;
   position: absolute;
   top: calc(50% - 3px);
-  right: 10px;
+  right: 14px;
+  opacity: 0.5;
 }
 header select:hover {
   color: #fff;
   background: #292929;
+}
+header .select-wrapper:hover:after {
+  opacity: 1;
 }
 header input {
   background-color: #222222;
@@ -202,7 +207,32 @@ header input {
   padding: 6px;
   padding-left: 10px;
   padding-right: 30px;
+}
+header .input-wrapper {
+  position: relative;
+  display: inline-block;
   float: right;
+}
+header .input-wrapper .input-search-clear {
+  content: ' ';
+  background: url(./icons/clear.svg) no-repeat;
+  display:block;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: calc(50% - 9px);
+  right: 10px;
+  display: none;
+  opacity: 0.5;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+}
+header .input-wrapper .input-search-clear:hover {
+  opacity: 1;
+}
+header input:hover, header input:focus {
+  background: #292929;
 }
 header input::placeholder {
   color: #444444;
@@ -234,13 +264,19 @@ header input::placeholder {
   }
 }
 @media only screen and (max-width: 480px) {
+  body {
+    padding-top: 100px;
+  }
   .album {
     width: 100%;
   }
-  header select {
+  header select, header input {
     width: 100%;
   }
-  header .select-wrapper {
+  header .select-wrapper, header .input-wrapper {
     width: 100%;
+  }
+  header .input-wrapper {
+    margin-top: 10px;
   }
 }

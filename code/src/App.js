@@ -7,6 +7,9 @@ const allData = musicData.albums.items
 
 export const App = () => {
   const [data, setData] = useState(allData);
+  if (data === undefined || data.length === 0) {
+    console.log('Empty state')
+  }
   return (
     <>
       <Header toChild={data} sendToParent={setData} />
