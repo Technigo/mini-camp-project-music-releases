@@ -207,6 +207,8 @@ header input {
   padding: 6px;
   padding-left: 10px;
   padding-right: 30px;
+  border-style:solid;
+  -webkit-appearance: none;
 }
 header .input-wrapper {
   position: relative;

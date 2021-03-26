@@ -12,7 +12,6 @@ let searchPlaceholder = 'Search Albums & Singles'
 
 export const Header = (props) => {
   function searchChange(value) {
-    console.log(value)
     searchValue = value
     if (filterValue === 'allData') {
       props.sendToParent(
