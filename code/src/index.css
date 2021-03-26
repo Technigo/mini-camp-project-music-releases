@@ -173,6 +173,8 @@ header select {
 header .select-wrapper {
   position: relative;
   display: inline-block;
+  float: left;
+  margin-right: 10px;
 }
 header .select-wrapper:after {
   content: ' ';
@@ -213,7 +215,7 @@ header input {
 header .input-wrapper {
   position: relative;
   display: inline-block;
-  float: right;
+  float: left;
 }
 header .input-wrapper .input-search-clear {
   content: ' ';

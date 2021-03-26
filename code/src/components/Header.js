@@ -3,8 +3,8 @@ import musicData from '../data.json'
 import musicDataEditors from '../stretch-goal.json'
 
 const allData = musicData.albums.items
-const singlesData = allData.filter((data) => data.album_type === 'single')
-const albumsData = allData.filter((data) => data.album_type === 'album')
+const singlesData = allData.filter((item) => item.album_type === 'single')
+const albumsData = allData.filter((item) => item.album_type === 'album')
 const editorsData = musicDataEditors.playlists.items
 let searchValue = ''
 let filterValue = 'allData'
@@ -15,19 +15,32 @@ export const Header = (props) => {
     searchValue = value
     if (filterValue === 'allData') {
       props.sendToParent(
-        allData.filter((filter) => filter.name.toLowerCase().includes(value.toLowerCase()))
+        allData.filter((item) => {
+          return (
+            item.name.toLowerCase().includes(value.toLowerCase())
+            || item.artists[0].name.toLowerCase().includes(value.toLowerCase())
+          )
+        })
       )
     } else if (filterValue === 'singlesData') {
       props.sendToParent(
-        singlesData.filter((filter) => filter.name.toLowerCase().includes(value.toLowerCase()))
+        singlesData.filter((item) => {
+          return item.name.toLowerCase().includes(value.toLowerCase())
+          || item.artists[0].name.toLowerCase().includes(value.toLowerCase())
+        })
       )
     } else if (filterValue === 'albumsData') {
       props.sendToParent(
-        albumsData.filter((filter) => filter.name.toLowerCase().includes(value.toLowerCase()))
+        albumsData.filter((item) => {
+          return item.name.toLowerCase().includes(value.toLowerCase())
+          || item.artists[0].name.toLowerCase().includes(value.toLowerCase())
+        })
       )
     } else if (filterValue === 'editorsData') {
       props.sendToParent(
-        editorsData.filter((filter) => filter.name.toLowerCase().includes(value.toLowerCase()))
+        editorsData.filter((item) => {
+          return item.name.toLowerCase().includes(value.toLowerCase())
+        })
       )
     }
     if (searchValue.length > 0) {
