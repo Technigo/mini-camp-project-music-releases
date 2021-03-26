@@ -1,9 +1,8 @@
 import React from 'react'
+import { AlbumListing } from './components/AlbumListing'
 
 export const App = () => {
   return (
-    <div>
-      Find me in src/app.js!
-    </div>
+    <AlbumListing className="albumlisting" />
   )
 }
