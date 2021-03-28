@@ -4,19 +4,30 @@ import { ArtistName } from './ArtistName'
 import { AlbumName } from './AlbumName'
 
 export const Album = (props) => {
-  function renderArtistNames() {
-    if (props.item.artists) {
-      return <div className="artist-names">{props.item.artists.map((item) => { return (<ArtistName key={item.id} item={item} />) })}</div>
-    } else {
-      return null;
-    }
-  }
   return (
     <>
-      <AlbumArtwork key={props.id} item={props.item} />
+      <AlbumArtwork
+        key={props.id}
+        image={props.item.images[0].url}
+        albumUrl={props.item.external_urls.spotify}
+        albumName={props.item.name} />
       <div className="description">
-        <AlbumName key={props.id} item={props.item} />
-        {renderArtistNames()}
+        <AlbumName
+          key={props.id}
+          albumName={props.item.name}
+          albumUrl={props.item.external_urls.spotify} />
+        {(props.item.artists)
+          ? <div className="artist-names">{
+            props.item.artists.map((item) => {
+              return (
+                <ArtistName
+                  key={item.id}
+                  artistName={item.name}
+                  artistUrl={item.external_urls.spotify} />
+              )
+            })
+          } </div>
+          : null}
       </div>
     </>
   )

@@ -5,8 +5,8 @@ export const AlbumArtwork = (props) => {
   return (
     <div className="artwork">
       <AlbumActions />
-      <a href={props.item.external_urls.spotify} target="_blank" rel="noreferrer" title={props.item.name}>
-        <img className="artwork-image" alt="alt" src={props.item.images[0].url} />
+      <a href={props.albumUrl} target="_blank" rel="noreferrer">
+        <img className="artwork-image" alt={props.albumName} title={props.albumName} src={props.image} />
       </a>
     </div>
   )
