@@ -337,8 +337,12 @@ header input::placeholder {
   }
   header .select-wrapper, header .input-wrapper {
     width: 100%;
+    margin-right: 0;
   }
   header .input-wrapper {
     margin-top: 10px;
+  }
+  .empty-state {
+    top: 140px;
   }
 }
