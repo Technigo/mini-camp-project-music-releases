@@ -18,12 +18,12 @@ export const Album = (props) => {
           albumUrl={props.item.external_urls.spotify} />
         {(props.item.artists)
           ? <div className="artist-names">{
-            props.item.artists.map((item) => {
+            props.item.artists.map((artist) => {
               return (
                 <ArtistName
-                  key={item.id}
-                  artistName={item.name}
-                  artistUrl={item.external_urls.spotify} />
+                  key={artist.id}
+                  artistName={artist.name}
+                  artistUrl={artist.external_urls.spotify} />
               )
             })
           } </div>

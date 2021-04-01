@@ -4,10 +4,8 @@ import { Header } from './components/Header'
 import { Album } from './components/Album'
 import { EmptyState } from './components/EmptyState'
 
-const allData = musicData.albums.items
-
 export const App = () => {
-  const [data, setData] = useState(allData);
+  const [data, setData] = useState(musicData.albums.items);
   return (
     <>
       <Header toChild={data} sendToParent={setData} />
