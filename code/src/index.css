@@ -23,22 +23,20 @@ header {
   width: 100%;
   display: block;
   border-bottom: 1px solid #252525;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 2;
-  background: #222222e3;
+  background:rgba(34, 34, 34, 0.95);
   backdrop-filter: blur(12px);
 }
 h1 {
   font-size: 18px;
 }
 .albums {
-  padding: 15px;
-  padding-top: 60px;
-  display:inline-block;
+  padding: 60px 15px 15px 15px;
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
@@ -74,7 +72,7 @@ h1 {
   display: block;
 }
 .description {
-  padding: 10px 10px 20px 10px;
+  padding: 10px 10px 20px;
   display: inline-block;
   width: 100%;
   box-sizing: border-box;
@@ -159,7 +157,7 @@ h1 {
   height: 80px;
   top: calc(50% - 40px);
 }
-header select {
+.header .select-filter {
   appearance: none;
   background-color: #222222;
   border: none;
@@ -175,17 +173,15 @@ header select {
   cursor: pointer;
   border: 1px solid #333333;
   border-radius: 8px;
-  padding: 6px;
-  padding-left: 10px;
-  padding-right: 30px;
+  padding: 6px 30px 6px 10px;
 }
-header .select-wrapper {
+.header .select-wrapper {
   position: relative;
   display: inline-block;
   float: left;
   margin-right: 10px;
 }
-header .select-wrapper:after {
+.header .select-wrapper:after {
   content: ' ';
   background: url(./icons/arrow-down.svg) no-repeat;
   display:block;
@@ -196,14 +192,14 @@ header .select-wrapper:after {
   right: 14px;
   opacity: 0.5;
 }
-header select:hover {
+.header .select-filter:hover {
   color: #fff;
   background: #292929;
 }
-header .select-wrapper:hover:after {
+.header .select-wrapper:hover:after {
   opacity: 1;
 }
-header input {
+.header input {
   background-color: #222222;
   border: none;
   margin: 0;
@@ -215,9 +211,7 @@ header input {
   outline: none;
   border: 1px solid #333333;
   border-radius: 8px;
-  padding: 6px;
-  padding-left: 10px;
-  padding-right: 30px;
+  padding: 6px 30px 6px 10px;
   border-style:solid;
   -webkit-appearance: none;
 }
@@ -226,7 +220,7 @@ header .input-wrapper {
   display: inline-block;
   float: left;
 }
-header .input-wrapper .input-search-clear {
+.header .input-wrapper .input-search-clear {
   content: ' ';
   background: url(./icons/clear.svg) no-repeat;
   display:block;
@@ -241,13 +235,13 @@ header .input-wrapper .input-search-clear {
   outline: none;
   border: 0;
 }
-header .input-wrapper .input-search-clear:hover {
+.header .input-wrapper .input-search-clear:hover {
   opacity: 1;
 }
-header input:hover, header input:focus {
+.header input:hover, .header input:focus {
   background: #292929;
 }
-header input::placeholder {
+.header input::placeholder {
   color: #444444;
 }
 .empty-state {
@@ -334,14 +328,14 @@ header input::placeholder {
   .album {
     width: 100%;
   }
-  header select, header input {
+  .header .select-filter, .header input {
     width: 100%;
   }
-  header .select-wrapper, header .input-wrapper {
+  .header .select-wrapper, .header .input-wrapper {
     width: 100%;
     margin-right: 0;
   }
-  header .input-wrapper {
+  .header .input-wrapper {
     margin-top: 10px;
   }
   .empty-state {

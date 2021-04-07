@@ -1,4 +1,5 @@
 import React from 'react'
+
 import musicData from '../data.json'
 import musicDataEditors from '../stretch-goal.json'
 
@@ -14,7 +15,7 @@ export const Header = (props) => {
   function searchChange(value) {
     searchValue = value
     if (filterValue === 'allData') {
-      props.sendToParent(
+      props.updateAlbums(
         allData.filter((item) => {
           return (
             item.name.toLowerCase().includes(value.toLowerCase())
@@ -23,21 +24,21 @@ export const Header = (props) => {
         })
       )
     } else if (filterValue === 'singlesData') {
-      props.sendToParent(
+      props.updateAlbums(
         singlesData.filter((item) => {
           return item.name.toLowerCase().includes(value.toLowerCase())
           || item.artists[0].name.toLowerCase().includes(value.toLowerCase())
         })
       )
     } else if (filterValue === 'albumsData') {
-      props.sendToParent(
+      props.updateAlbums(
         albumsData.filter((item) => {
           return item.name.toLowerCase().includes(value.toLowerCase())
           || item.artists[0].name.toLowerCase().includes(value.toLowerCase())
         })
       )
     } else if (filterValue === 'editorsData') {
-      props.sendToParent(
+      props.updateAlbums(
         editorsData.filter((item) => {
           return item.name.toLowerCase().includes(value.toLowerCase())
         })
@@ -53,19 +54,19 @@ export const Header = (props) => {
     searchValue = ''
     document.getElementsByClassName('input-search-clear')[0].style.display = 'none'
     if (event.target.value === 'singlesData') {
-      props.sendToParent(singlesData)
+      props.updateAlbums(singlesData)
       filterValue = 'singlesData'
       searchPlaceholder = 'Search Singles'
     } else if (event.target.value === 'albumsData') {
-      props.sendToParent(albumsData)
+      props.updateAlbums(albumsData)
       filterValue = 'albumsData'
       searchPlaceholder = 'Search Albums'
     } else if (event.target.value === 'allData') {
-      props.sendToParent(allData)
+      props.updateAlbums(allData)
       filterValue = 'allData'
       searchPlaceholder = 'Search Albums & Singles'
     } else if (event.target.value === 'editorsData') {
-      props.sendToParent(editorsData)
+      props.updateAlbums(editorsData)
       filterValue = 'editorsData'
       searchPlaceholder = 'Search Editor\'s Picks'
     }
@@ -75,9 +76,18 @@ export const Header = (props) => {
     })
   }
   return (
-    <header>
+    <header className="header">
       <div className="select-wrapper">
-        <select id="select-filter" name="select-filter" onChange={filterChange} defaultValue={{ label: 'New Albums & Singles', value: 0 }}>
+        <select
+          className="select-filter"
+          name="select-filter"
+          onChange={filterChange}
+          defaultValue={
+            {
+              label: 'New Albums & Singles',
+              value: 0
+            }
+          }>
           <option value="allData">New Albums & Singles</option>
           <option value="singlesData">New Singles</option>
           <option value="albumsData">New Albums</option>
@@ -85,10 +95,26 @@ export const Header = (props) => {
         </select>
       </div>
       <div className="input-wrapper">
-        <input id="input-search" name="input-search" type="text" placeholder={searchPlaceholder} value={searchValue} onChange={(event) => searchChange(event.target.value)} ref={(input) => input && input.focus()} />
-        <button className="input-search-clear" type="button" value="" onClick={(event) => searchChange(event.target.value)}>&nbsp;</button>
+        <input
+          className="input-search"
+          name="input-search"
+          type="text"
+          placeholder={searchPlaceholder}
+          value={searchValue}
+          onChange={
+            (event) => searchChange(event.target.value)
+          }
+          ref={(input) => input && input.focus()} />
+        <button
+          className="input-search-clear"
+          type="button"
+          value=""
+          onClick={
+            (event) => searchChange(event.target.value)
+          }>
+          &nbsp;
+        </button>
       </div>
     </header>
   )
 }
-export default Header

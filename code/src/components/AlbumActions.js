@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { ReactComponent as Heart } from '../icons/heart.svg'
 import { ReactComponent as Play } from '../icons/play.svg'
 import { ReactComponent as Dots } from '../icons/dots.svg'
@@ -12,4 +13,3 @@ export const AlbumActions = () => {
     </div>
   )
 }
-export default AlbumActions
