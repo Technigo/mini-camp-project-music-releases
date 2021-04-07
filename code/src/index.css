@@ -1,13 +1,344 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  height: 100%;
+}
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #161616;
+  color: #fff;
+  min-height: 100%;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+header {
+  width: 100%;
+  display: block;
+  border-bottom: 1px solid #252525;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  background:rgba(34, 34, 34, 0.95);
+  backdrop-filter: blur(12px);
+}
+h1 {
+  font-size: 18px;
+}
+.albums {
+  padding: 60px 15px 15px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  height: 100vh;
+}
+.album {
+  display: block;
+  width: 20%;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-color: #161616;
+  transform: scale(0.96, 0.96);
+  transition-timing-function: ease-in;
+  transition: 0.4s;
+  opacity: 0;
+  animation: fadeIn ease 1s;
+  animation-fill-mode: forwards;
+}
+.album:hover {
+  transform: scale(1, 1);
+}
+.artwork {
+  width: 100%;
+  display: inline-block;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.artwork-image {
+  width: 100%;
+  z-index: 1;
+  display: block;
+}
+.description {
+  padding: 10px 10px 20px;
+  display: inline-block;
+  width: 100%;
+  box-sizing: border-box;
+}
+.description a {
+  margin: 0 0 5px 0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #fff;
+  text-decoration: none;
+}
+/*If there are siblings ("+"), add " and " before the last item*/
+.artist-names span + span:last-child {
+		content: " & ";
+}
+.artist-names span + span:last-child:before {
+		content: " & ";
+}
+/*Add ", " before each item, after the first item. Exclude if it's the last item.*/
+.artist-names span:nth-of-type(n + 2):not(:last-child) {
+	content: ", ";
+}
+.artist-names span:nth-of-type(n + 2):not(:last-child)::before {
+	content: ", ";
+}
+.album-name a {
+  display: block;
+}
+.artist-names span {
+  color: #999999;
+}
+.description a:hover {
+  text-decoration: underline;
+}
+.artist-names span a:hover {
+  color: #fff;
+}
+.description a.description-album:visited {
+  color: #fff;
+}
+.description a.description-artist {
+  color: #999999;
+  margin: 0;
+  width: auto;
+}
+.album-actions {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  text-align: center;
+  opacity: 0;
+  background: #00000091;
+  transition: scale .5s ease;
+}
+.album-action {
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  position: relative;
+  top: calc(50% - 57px);
+  margin: 0 5px 0 5px;
+  fill: #fff;
+  transform: scale(0.85, 0.85);
+  transition-timing-function: ease-in;
+  transition: 0.4s;
+  z-index: 3;
+  cursor: pointer;
+}
+.album .album-action-play:hover {
+  transform: scale(1, 1);
+}
+.album .artwork:hover .album-actions {
+  opacity: 1;
+}
+.album-action-play {
+  width: 80px;
+  height: 80px;
+  top: calc(50% - 40px);
+}
+.header .select-filter {
+  appearance: none;
+  background-color: #222222;
+  border: none;
+  margin: 0;
+  width: auto;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  cursor: inherit;
+  line-height: inherit;
+  color: #cccccc;
+  outline: none;
+  cursor: pointer;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 6px 30px 6px 10px;
+}
+.header .select-wrapper {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+.header .select-wrapper:after {
+  content: ' ';
+  background: url(./icons/arrow-down.svg) no-repeat;
+  display:block;
+  width:10px;
+  height:6px;
+  position: absolute;
+  top: calc(50% - 3px);
+  right: 14px;
+  opacity: 0.5;
+}
+.header .select-filter:hover {
+  color: #fff;
+  background: #292929;
+}
+.header .select-wrapper:hover:after {
+  opacity: 1;
+}
+.header input {
+  background-color: #222222;
+  border: none;
+  margin: 0;
+  width: auto;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 500;
+  color: #cccccc;
+  outline: none;
+  border: 1px solid #333333;
+  border-radius: 8px;
+  padding: 6px 30px 6px 10px;
+  border-style:solid;
+  -webkit-appearance: none;
+}
+header .input-wrapper {
+  position: relative;
+  display: inline-block;
+  float: left;
+}
+.header .input-wrapper .input-search-clear {
+  content: ' ';
+  background: url(./icons/clear.svg) no-repeat;
+  display:block;
+  width: 18px;
+  height: 18px;
+  position: absolute;
+  top: calc(50% - 9px);
+  right: 10px;
+  display: none;
+  opacity: 0.5;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+}
+.header .input-wrapper .input-search-clear:hover {
+  opacity: 1;
+}
+.header input:hover, .header input:focus {
+  background: #292929;
+}
+.header input::placeholder {
+  color: #444444;
+}
+.empty-state {
+  position: relative;
+  margin: 0 auto;
+  display: inline-block;
+  top: 50%;
+  margin-top: -30px;
+  opacity: 0;
+  animation: fadeIn ease 1s;
+  animation-fill-mode: forwards;
+}
+.empty-state:before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  margin-left: -30px;
+  transform: rotate(11deg);
+  width: 24px;
+  height: 24px;
+  background: url(./icons/tune-1.svg) no-repeat;
+  opacity: 0.5;
+  animation: float 10s ease-in-out infinite;
+}
+.empty-state:after {
+  content: '';
+  position: absolute;
+  top: -30px;
+  right: 50%;
+  margin-right: -30px;
+  transform: rotate(-6deg);
+  width: 24px;
+  height: 24px;
+  background: url(./icons/tune-2.svg) no-repeat;
+  opacity: 0.5;
+  animation: float 12s ease-in-out infinite;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
+}
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-10px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+@media only screen and (min-width: 2200px) {
+  .album {
+    width: 10%;
+  }
+}
+@media only screen and (max-width: 1600px) {
+  .album {
+    width: 20%;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .album {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: 900px) {
+  .album {
+    width: 33%;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .album {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .albums {
+    padding-top: 110px;
+  }
+  .album {
+    width: 100%;
+  }
+  .header .select-filter, .header input {
+    width: 100%;
+  }
+  .header .select-wrapper, .header .input-wrapper {
+    width: 100%;
+    margin-right: 0;
+  }
+  .header .input-wrapper {
+    margin-top: 10px;
+  }
+  .empty-state {
+    top: 140px;
+  }
 }
